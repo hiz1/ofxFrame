@@ -2,8 +2,10 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-  frame1 = ofPtr<MyFrame>(new MyFrame(ofRectangle(0             , 0, ofGetWidth()/2, ofGetHeight()), 1));
-  frame2 = ofPtr<MyFrame>(new MyFrame(ofRectangle(ofGetWidth()/2, 0, ofGetWidth()/2, ofGetHeight()), 2));
+  frame1 = ofPtr<MyFrame>(new MyFrame(ofRectangle(0  , 0, 200, ofGetHeight()), 1));
+  frame2 = ofPtr<MyFrame>(new MyFrame(ofRectangle(200, 0, ofGetWidth()-200, ofGetHeight()), 2));
+  frame1->setResizeFlag(RESIZE_SIZE | RESIZE_Y);
+  frame2->setResizeFlag(RESIZE_SIZE | RESIZE_X | RESIZE_Y);
 }
 
 //--------------------------------------------------------------

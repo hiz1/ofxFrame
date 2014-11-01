@@ -18,7 +18,16 @@ public:
   float sx, sy; // scroll 
 };
 
+enum Resize {
+  SIZE=1, POS=2, X=4, Y=8
+};
+
 extern ofEvent<MouseScrollArgs> mouseScrolledEvent;
+extern const int RESIZE_SIZE;
+extern const int RESIZE_POS;
+extern const int RESIZE_X;
+extern const int RESIZE_Y;
+extern const int RESIZE_ALL;
 
 class ofxFrame {
 public:
@@ -30,8 +39,10 @@ public:
 	void mousePressed(ofMouseEventArgs &args);
 	void mouseReleased(ofMouseEventArgs &args);
   void mouseScrolled(MouseScrollArgs &args);
+  void windowResized(ofResizeEventArgs &args);
   void setRect(ofRectangle rect);
   void setContentSize(ofVec2f size);
+  void setResizeFlag(int resizeFlag);
   const ofRectangle &getRect();
   const ofVec2f     &getContentSize();
   
@@ -43,10 +54,13 @@ public:
   virtual void mouseReleasedImpl(int x, int y, int button);
   virtual void mouseScrolledImpl(int mx, int my, int sx, int sy);
 protected:
-  ofCamera camera;
-  ofVec2f camPos;
   ofRectangle frameRect;
   ofVec2f contentSize;
+private:
+  ofVec2f windowSize;
+  ofVec2f camPos;
+  ofCamera camera;
+  int  resizeFlag;
 };
 
 #endif /* defined(__scroll__ofxFrame__) */
